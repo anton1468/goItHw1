@@ -1,17 +1,19 @@
 import React from 'react';
 import {arrayOf, bool, number, shape, string} from "prop-types";
-import {Avatar, Friend, List, Name, Online} from "./FriendsList.styles";
+import {List} from "./FriendsList.styles";
+import FriendListItem from "./FriendListItem";
 
 const FriendsList = ({friends}) => {
   return (
     <div>
       <List>
-        {friends.map((friend) =>
-          <Friend key={friend.id}>
-            <Online online={friend.isOnline}/>
-            <Avatar src={friend.avatar} alt="User avatar"/>
-            <Name>{friend.name}</Name>
-          </Friend>
+        {friends.map(({id, isOnline, avatar, name}) =>
+          <FriendListItem
+            key={id}
+            isOnline={isOnline}
+            avatar={avatar}
+            name={name}
+          />
         )}
       </List>
     </div>

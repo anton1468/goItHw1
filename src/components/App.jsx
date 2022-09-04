@@ -10,7 +10,7 @@ import TransactionHistory from "./TransactionHistory/TransactionHistory";
 export const App = () => {
 
   //! show title or not
-  const isShowTitle = !Math.round(Math.random()) && 'Upload stats';
+  const isShowTitle = !Math.round(Math.random()) ? 'Upload stats' : undefined;
 
   return (
     <div
@@ -21,7 +21,13 @@ export const App = () => {
         fontSize: 40,
       }}
     >
-      <Profile profile={profile}/>
+      <Profile
+        username={profile.username}
+        avatar={profile.avatar}
+        tag={profile.tag}
+        location={profile.location}
+        stats={profile.stats}
+      />
       <Statistics title={isShowTitle} stats={stats}/>
       <FriendsList friends={friends}/>
       <TransactionHistory transactions={transactions} />

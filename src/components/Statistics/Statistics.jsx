@@ -1,26 +1,31 @@
 import React from 'react';
-import {arrayOf, bool, number, oneOfType, shape, string} from "prop-types";
-import {StatisticContainer, StatList, Title} from "./Statistics.style";
-import StatisticItem from "./StatisticItem";
+import {arrayOf, number, shape, string} from "prop-types";
+import {Label, Percentage, StatisticContainer, StatItem, StatList, Title} from "./Statistics.style";
 
 const Statistics = ({title, stats}) => {
   return (
     <StatisticContainer>
       {title && <Title className="title">{title}</Title>}
       <StatList className="stat-list">
-        {stats.map((item) =>
-          <StatisticItem key={item.id} item={item}/>
-        )}
+        {stats.map((item) => {
+          const backgroundColor =  '#'+(Math.random()*0xffffff<<0).toString(16);
+          return (
+            <StatItem color={backgroundColor} key={item.id}>
+            <Label className="label">{item.label}</Label>
+            <Percentage className="percentage">{item.percentage}%</Percentage>
+          </StatItem>
+          )
+        })}
       </StatList>
     </StatisticContainer>
   );
 };
 Statistics.propTypes = {
-  title: oneOfType([string, bool]),
+  title: string,
   stats: arrayOf(shape({
-    id: string,
-    label: string,
-    percentage: number
+    id: string.isRequired,
+    label: string.isRequired,
+    percentage: number.isRequired
   }))
 }
 

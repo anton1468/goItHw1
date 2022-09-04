@@ -10,8 +10,8 @@ import {
   UserStatsItem
 } from "./Profile.styles";
 
-const Profile = ({profile}) => {
-  const {username, avatar, tag, location, stats} = profile
+const Profile = ({ username, avatar, tag, location, stats }) => {
+  const { likes, followers, views } = stats
   return (
     <MainContainer>
       <UserInfoContainer>
@@ -23,15 +23,15 @@ const Profile = ({profile}) => {
       <UserStats>
         <UserStatsItem>
           <p>Followers</p>
-          <p>{stats.followers}</p>
+          <p>{followers}</p>
         </UserStatsItem>
         <UserStatsItem>
           <p>Views</p>
-          <p>{stats.views}</p>
+          <p>{views}</p>
         </UserStatsItem>
         <UserStatsItem>
           <p>Likes</p>
-          <p>{stats.likes}</p>
+          <p>{likes}</p>
         </UserStatsItem>
       </UserStats>
     </MainContainer>
@@ -41,14 +41,14 @@ export default Profile;
 
 Profile.propTypes = {
   profile: shape({
-    username: string,
-    tag: string,
-    location: string,
-    avatar: string,
+    username: string.isRequired,
+    tag: string.isRequired,
+    location: string.isRequired,
+    avatar: string.isRequired,
     stats: shape({
-      followers: number,
-      views: number,
-      likes: number
+      followers: number.isRequired,
+      views: number.isRequired,
+      likes: number.isRequired
     })
   }),
 }
